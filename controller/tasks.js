@@ -11,7 +11,7 @@ export const addTask =async(req, res)=>{
         })
         res.status(200).json({
             success: true,
-            message: "successful create"
+            message: "Task Created successfully....."
         })
     } catch (error) {
         return res.status(404).json({
@@ -26,7 +26,7 @@ export const deleteTask =async(req, res)=>{
         const { id } = req.params;
         const isTask = await Tasks.findByIdAndDelete(id);
         if (isTask) {
-            res.status(200).send('Task deleted successfully.');
+            res.status(200).send('Task deleted successfully....');
           } else {
             res.status(404).send('Task not found.');
           }

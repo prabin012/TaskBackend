@@ -9,7 +9,7 @@ export const newUser = async (req, res) => {
         if(isEmail) {
             return res.status(409).json({
                 success: false,
-                messsage: "USer is already created"
+                messsage: "USer is already Exits !"
             })
         }
         else{
@@ -20,9 +20,9 @@ export const newUser = async (req, res) => {
                 email,
                 password: userPassword,
               });
-            res.json({
+            res.status(201).json({
                 success: true,
-                messsage: "User is created",
+                messsage: "User created Successfully...",
             })
         }
     } catch (error) {
