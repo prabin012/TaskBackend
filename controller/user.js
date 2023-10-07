@@ -1,4 +1,5 @@
 
+import { Admin } from '../schema/admin.js';
 import { User } from '../schema/user.js'
 import bcrypt from 'bcrypt';
 
@@ -23,6 +24,35 @@ export const newUser = async (req, res) => {
             res.status(201).json({
                 success: true,
                 messsage: "User created Successfully...",
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const addAdmin = async (req, res) => {
+    const { name, email, password } = req.body;
+    try {
+        const isEmail = await Admin.findOne({ email });
+        if(isEmail) {
+            return res.status(409).json({
+                success: false,
+                messsage: "Admin is already Exits !"
+            })
+        }
+        else{
+            const salt= await bcrypt.genSalt(10);
+            const userPassword = await bcrypt.hash(password, salt)
+            await Admin.create({
+                name,
+                email,
+                password: userPassword,
+              });
+            res.status(201).json({
+                success: true,
+                messsage: "Admin created Successfully...",
             })
         }
     } catch (error) {
