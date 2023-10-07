@@ -4,7 +4,9 @@ import cors from 'cors'
 import userRote from './routes/rotues.js'
 import bodyParser from "body-parser";
 const app = express();
+import dotenv from 'dotenv';
 
+dotenv.config();
 database();
 
 app.use(cors());

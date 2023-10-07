@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
 const database =()=>{
-    mongoose.connect('mongodb://localhost:27017/Tasks')
-    .then(()=>{
-        console.log("database connected")
-    }).catch((e)=>{
-        console.log(e)
-    })
+    const db_url = process.env.MONGODB_URL;
+    mongoose.connect(db_url
+        ).then(()=>{
+            console.log("db Connected");
+        }).catch((e)=>{
+            console.log(e)
+        })
 }
 export default database
