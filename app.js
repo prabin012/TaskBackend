@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use('/api',userRote);
 
-app.listen(7550,()=>{
-    console.log("serer is running", 7550)
+const PORT = process.env.PORT || 7550;
+app.listen(PORT,()=>{
+    console.log("serer is running", PORT)
 })
